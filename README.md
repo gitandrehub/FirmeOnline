@@ -4,11 +4,11 @@ Il progetto è stato svolto per il corso 'Introduzzione alle applicazioni Web'.
 L’indirizzo a cui l’applicazione web è visibile e usabile è [https://andrea01.pythonanywhere.com]
 Gli utenti registrati sono i seguenti:
 
-mail utente            | password
--------------------------------------
-marco.b@example.com    | MarcoB123
-chiararossi@yahoo.com  | Chiara123
-matteo.russo@gmail.com | pass89
+'mail utente            | password\n
+-------------------------------------\n
+marco.b@example.com    | MarcoB123\n
+chiararossi@yahoo.com  | Chiara123\n
+matteo.russo@gmail.com | pass89'
 
 Per maggiori informazioni leggere i file 'info.txt' (su come funziona l'applicazione) e 'requirements.txt' (librerie che ho usato).
 
