@@ -1,7 +1,7 @@
 # FirmeOnline
 
 ### Info Base
-Il progetto è stato svolto per il corso 'Introduzzione alle applicazioni Web'.\
+Il progetto è stato svolto per il corso 'Introduzione alle applicazioni Web'.\
 L’indirizzo a cui l’applicazione web è visibile e usabile è [andrea01.pythonanywhere.com](https://andrea01.pythonanywhere.com).\
 Gli utenti registrati sono i seguenti:
 
