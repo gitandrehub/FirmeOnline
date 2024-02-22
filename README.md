@@ -13,6 +13,10 @@ chiararossi@yahoo.com  | Chiara123
 matteo.russo@gmail.com | pass89
 ```
 
+Nel caso in cui, all'apertura dell'applicazione, non siano presenti raccolte è perchè sono state tutte chiuse (la data di chiusura è stata superata) e si possono visualizzare nella sezione 'Finite'. Per poterne creare serve:
+- fare il login (con utenti indicati sopra) o una registrazione
+- creare una nuova petizione con 'Lancia la tua petizione'
+
 Per maggiori informazioni leggere i file 'info.txt' (su come funziona l'applicazione) e 'requirements.txt' (librerie che ho usato).
 
 ### Descrizione dell'applicazione web
