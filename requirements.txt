@@ -1,0 +1,2 @@
+Le librerie che ho utilizzato sono:
+datetime, flask, flask-login, pillow, werkzeug, sqlite3

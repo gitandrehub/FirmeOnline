@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{%block title%}Nuova petizione{%endblock%}
+
+{%block content%}
+<a href="/">Torna indietro</a>
+
+<!-- Creazione di una nuova raccolta -->
+<div class="col-4 offset-md-4 bg-light p-4 border rounded">
+    <form action="/newpetizione" method="POST" enctype="multipart/form-data">
+        <!-- titolo -->
+        <div class="mb-3">
+            <label for="titolo" class="form-label fw-semibold">Titolo della petizione</label>
+            <input type="text" class="form-control" name="titolo" id="titoloInput" required minlength="1">
+        </div>
+
+        <!-- descrizione -->
+        <div class="mb-3">
+            <label for="descrizione" class="form-label fw-semibold">Descrizione della tua petizione</label>
+            <textarea class="form-control" id="descrizione" name="descrizione" rows="3"
+              placeholder="Inserisci un testo per il tuo post" required minlength="8"></textarea>
+        </div>
+
+        <!-- immagine -->
+        <div class="mb-3">
+            <label for="immagineFile" class="form-label fw-semibold">Immagine</label>
+            <input type="file" class="form-control" name="immagine_post" id="immagineFile">
+            <small>non obbligatoria</small>
+        </div>
+
+        <!-- obiettivo -->
+        <div class="mb-3">
+            <label for="goalInput" class="form-label fw-semibold">Goal</label>
+            <div class="input-group">
+                <span class="input-group-text">€</span>
+                <input type="text" name="goal" class="form-control" id="goalInput" aria-label="Amount (to the nearest dollar)" required>
+                <span class="input-group-text">.00</span>
+            </div>
+        </div>
+
+        <!-- massima e minima donazione che l'utente può fare  -->
+        <div class="mb-3">
+            <label for="goalInput" class="form-label fw-semibold">Donazioni</label>
+            <div class="row">
+                <div class="col">
+                    <div class="input-group">
+                        <span class="input-group-text">€</span>
+                        <input type="text" name="minel" class="form-control" id="minel" aria-label="Amount (to the nearest dollar)" required>
+                        <span class="input-group-text">.00</span>
+                    </div>
+                    <small>minima</small>
+                </div>
+                <div class="col">
+                    <div class="input-group">
+                        <span class="input-group-text">€</span>
+                        <input type="text" name="maxel" class="form-control" id="maxel" aria-label="Amount (to the nearest dollar)" required>
+                        <span class="input-group-text">.00</span>
+                    </div>
+                    <small>massima</small>
+                </div>
+            </div>
+        </div>
+        
+        <!-- tipo di raccolta -->
+        <div class="mb-3">
+            <label for="goalInput" class="form-label fw-semibold">Tipo di raccolta:</label>
+            <div class="input-group">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tipo_raccolta" id="lampo" value="lampo">
+                    <label class="form-check-label" for="lampo">lampo (entro 5 minuti)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tipo_raccolta" id="normale" value="normale">
+                    <label class="form-check-label" for="normale">normale (entro 14 giorni)</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- data e ora di chiusura raccolta -->
+        <div class="mb-3">
+            <label for="datetimeInput" class="form-label fw-semibold">Data e ora:</label>
+            <input class="form-control" type="datetime-local" name="datetime" id="datetimeInput">
+            <small>usabile solo per tipi 'normale' di raccolta</small>
+        </div>
+        
+        <!-- bottone per inviare il form  -->
+        <button type="submit" class="btn btn-primary">Crea petizione</button>
+    </form>
+</div>
+{%endblock%}

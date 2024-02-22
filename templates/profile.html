@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{%block title%}Profile{%endblock%}
+
+
+{%block content%}
+<main class="mb-3">
+    <!-- Parte iniziale: informazioni dell'utente -->
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-9">
+            <div class="row">
+                <div class="col-2 overflow">
+                    <img class="w-26 p-2 rounded-circle" src="{{ url_for('static', filename=current_user.immagine_profilo) }}" alt="Questa è l'immagine del post">
+                </div>
+                <div class="col pt-2 ps-5">
+                    <p class="infoutente">Info utente</p>
+                    <div class="row mb-2">
+                        <div class="col-3"><p class="d-inline">Nome: {{current_user.nome}}</p></div>
+                        <div class="col-3"><p class="d-inline">Cognome: {{current_user.cognome}}</p></div>
+                        <div class="col"><p class="d-inline">Email: {{current_user.email}}</p></div>
+                    </div>
+                    <p class="mb-2">Raccolte create dall'utente: {{totpost}}</p>
+                    <p class="mt-2 portvirt"> Portafoglio virtuale: {{balance}} €</p>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+
+    <!-- raccolte create dall'utente con possibilità di modificarle, visualizzarle, eliminarle -->
+    {% for post in posts %}
+    <article>
+        <div class="container mt-3">
+            <div class="row">
+                <div id="post" class="col-9 row mx-auto text-center border border-black">
+                    <div class="col bodypage d-flex flex-column justify-content-between">
+                        <p class="posttitle" class="mb-0">{{ post.titolo }}</p>
+                        <p class="postdescr">{{ post.descrizione }}</p>
+                        <div class="mt-auto mb-3">
+                            <hr>
+                            <div class="row text-center">
+                                {% if post.tiporac == 'lampo' %}
+                                <div class="col-2"><p class="lampo footerpage ms-2">{{ post.tiporac }}</p></div>
+                                {% else %}
+                                <div class="col-2"><p class="norm footerpage ms-2">{{ post.tiporac }}</p></div>
+                                {% endif %}
+                                <div class="col-7 p-0">
+                                    {% if post.timer == '0' %}
+                                        {% if post.soldrac > post.goal %}
+                                        <p class="footerpage ms-2">finita: obiettivo raggiunto</p>  
+                                        {% else %}
+                                        <p class="footerpage ms-2">finita: obiettivo non raggiunto</p> 
+                                        {% endif %} 
+                                    {% else %}
+                                        {% set days, ore, minuti = post.timer.split(':') %}
+                                        <p class="footerpage ms-2">{{days}} giorni {{ore}} ore {{minuti}} minuti</p>
+                                    {% endif %}
+                                </div>
+                                <div class="col-3 p-0"><p class="footerpage ms-2 budgetpage p-0">{{ post.soldrac }} €</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 imagecontainer">
+                        {% if post.image %}
+                            <img class="w-100 h-100 p-2 imagepost" src="{{ url_for('static', filename=post.image) }}" alt="Questa è l'immagine del post">
+                        {% endif %}
+                    </div>        
+                </div>
+                <div class="col-2 d-flex flex-column justify-content-center">
+                    {% if post.timer != '0' %}
+                    <a href="{{ url_for('modifica', id=post.raccid ) }}" class="mb-3 btn btn-success buttons">modifica</a>
+                    <a href="{{ url_for('cancella', id=post.raccid ) }}" class="mb-3 btn btn-danger buttons">cancella</a>
+                    {% endif %}
+                    <a href="{{ url_for('single_post', id=post.raccid ) }}" class="btn btn-dark buttons">visualizza</a>
+                </div>              
+            </div>
+        </div>
+    </article>
+    {% endfor %}
+</main>
+{%endblock%}

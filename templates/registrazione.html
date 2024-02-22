@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{%block title%}Registrazione{%endblock%}
+
+{%block content%}
+<a href="/">Torna indietro</a>
+
+<!-- registrazione di un nuovo utente -->
+<div class="col-4 offset-md-4 bg-light p-4 border rounded">
+    <form action="/registrazione" method="POST" enctype="multipart/form-data">
+
+        <!-- nome  -->
+        <div class="mb-3">
+            <label for="nomeInput" class="form-label">Nome</label>
+            <input type="text" class="form-control" name="nome" id="nomeInput" required>
+        </div>
+
+        <!-- cognome -->
+        <div class="mb-3">
+            <label for="cognomeInput" class="form-label">Cognome</label>
+            <input type="text" class="form-control" name="cognome" id="cognomeInput" required>
+        </div>
+
+        <!-- email  -->
+        <div class="mb-3">
+            <label for="emailInput" class="form-label">Email</label>
+            <input type="text" class="form-control" name="email" id="emailInput" required>
+        </div>
+
+        <!-- password -->
+        <div class="mb-3">
+            <label for="passwordInput" class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" id="passwordInput" required>
+            <div id="passwordHelp" class="form-text">Non condivideremo mai la tua password con nessun altro.</div>
+        </div>
+
+        <!-- immagine profilo -->
+        <div class="mb-3">
+            <label for="immagineInput" class="form-label">Immagine di profilo</label>
+            <input type="file" class="form-control" name="immagine_profilo" id="immagineInput">
+        </div>
+
+        <!-- bottone invio del form -->
+        <button type="submit" class="btn btn-primary">Registrati</button>
+    </form>
+</div>
+{%endblock%}

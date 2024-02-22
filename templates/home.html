@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{%block title%}Homepage{%endblock%}
+
+
+{%block content%}
+<!-- Scritta in alto -->
+<div class="row mt-2">
+    <div class="col"></div>
+    <div class="col-9 p-0"><p class="title">Naviga tra le petizioni per firmare</p></div>
+    <div class="col"></div>
+</div>
+
+<!-- raccolte -->
+<main class="mb-3">
+    {% for post in posts %}
+    {% set days, ore, minuti = post.timer.split(':') %}
+    <div class="row mb-3 p-0">
+        <div class="col"></div>
+        <div class="col-9 border border-black ps-3 pt-3" id="post">
+            <div class="row">
+                <div class="col bodypage d-flex flex-column justify-content-between">
+                    <a href="{{ url_for('single_post', id=post.raccid ) }}" class="linkpost">
+                        <p class="mb-0 posttitle">{{ post.titolo }}</p>
+                        <p class="postdescr">{{ post.descrizione }}</p>
+                        <div class="mt-auto mb-3">
+                            <hr>
+                            <div class="row">
+                                {% if post.tiporac == 'lampo' %}
+                                <div class="col"><p class="lampo footerpage ms-5">{{ post.tiporac }}</p></div>
+                                {% else %}
+                                <div class="col"><p class="norm footerpage ms-5">{{ post.tiporac }}</p></div>
+                                {% endif %}
+                                <div class="col-6"><p class="footerpage ms-5">{{days}} giorni {{ore}} ore {{minuti}} minuti</p></div>
+                                <div class="col-3"><p class="footerpage budgetpart ms-5">{{ post.soldrac }} €</p></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-4 imagecontainer">
+                    <a href="{{ url_for('single_post', id=post.raccid ) }}" class="linkpost imagepart">
+                        {% if post.image %}
+                            <img class="w-100 h-100 p-2 imagepost" src="{{ url_for('static', filename=post.image) }}" alt="Questa è l'immagine del post">
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+    {% endfor %}
+</main>
+{%endblock%}

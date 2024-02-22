@@ -1,0 +1,42 @@
+Utenti salvati nel database:
+mail utente            | password
+-------------------------------------
+marco.b@example.com    | MarcoB123
+chiararossi@yahoo.com  | Chiara123
+matteo.russo@gmail.com | pass89
+
+
+Indirizzo della web application:
+andrea01.pythonanywhere.com
+
+
+Uso dell'applicazione web:
+
+Pagina "Home"
+- si trovano tutte le raccolte a cui è possibile donare, ovvero quelle non chiuse, ordinate per data/ora di chiusura
+- in alto sx pulsanti 'FirmeOnline' (nome del sito) e 'Sfoglia' che portano alla homepage, 'Finite' per vedere le raccolte chiuse
+- in alto a dx il pulsate 'Accedi' da cui fare il login, se un'utente è registrato, o registrarsi dal link 'registrati' al fondo del form
+- dopo l'accesso appaiono i bottoni 'Lancia una petizione' per creare una nuova petizione e 'Menù' che consente di accedere alla pagina profilo oppure fare il logout
+- cliccando sulle raccolte si passa alla pagina dedicata alla raccolta singola
+
+Pagina dedicata al post
+- in alto il nome della raccolta, a dx il form per poter fare una donazione e andamento della raccolta, a sx l'immagine della raccolta (se presente) e descrizione della raccolta
+- sotto a questa parte le donazioni effettuate dagli utenti per questa raccolta
+
+Pagina "Finite"
+- stesso format della pagina home ma in cui si vedono solo le raccolte chiuse; cliccando su di esse si apre la pagina dedicata alla raccolta senza la possibilità di donare
+
+Pagina "Registrazione"
+- presente un form con i campi dati da compilare per poter fare la registrazione
+- nel caso in cui non venga inserita un'immagine ne verrà assegnata una di default (nominata default.png nella cartella static)
+
+Pagina "Profilo"
+- in alto si possono vedere le informazioni dell'utente registrato: immagine profilo, nome, cognome, email, quante raccolte ha creato, portafoglio virtuale
+- sotto la sezione precedente si trovano tutte le raccolte create dall'utente; nel caso siano attive allora oltre a visualizzarle è possibile anche modificarle oppure cancellarle
+
+Pagina "Creazione nuova raccolta"
+- form con tutti i campi necessari a creare la raccolta
+
+Pagina "Modifica"
+- stesso format della pagina 'creazione nuova raccolta' in cui i campi sono rimpiti con i valori messi precedentemente
+- per eliminare l'immagine presente ho aggiunto un checkbox

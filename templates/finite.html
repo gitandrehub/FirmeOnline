@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{%block title%}Finite{%endblock%}
+
+
+{%block content%}
+<!-- Scritta in alto -->
+<div class="row mt-2">
+    <div class="col"></div>
+    <div class="col-9 p-0"><p class="title">Petizioni chiuse</p></div>
+    <div class="col"></div>
+</div>
+
+<!-- raccolte -->
+<main class="mb-3">
+    {% for post in posts %}
+    <!-- {% if post.timer == '0' %}-->
+    <div class="row mb-3">
+        <div class="col"></div>
+        <div class="col-9 border border-black ps-3 pt-3" id="post">
+            <div class="row">
+                <div class="col bodypage d-flex flex-column justify-content-between">
+                    <a href="{{ url_for('single_post', id=post.raccid ) }}" class="linkpost">
+                        <p class="mb-0 posttitle">{{ post.titolo }}</p>
+                        <p class="postdescr">{{ post.descrizione }}</p>
+                        <div class="mt-auto mb-3">
+                            <hr>
+                            <div class="row">
+                                {% if post.tiporac == 'lampo' %}
+                                <div class="col"><p class="lampo footerpage ms-5">{{ post.tiporac }}</p></div>
+                                {% else %}
+                                <div class="col"><p class="norm footerpage ms-5">{{ post.tiporac }}</p></div>
+                                {% endif %}
+                                <div class="col-6">
+					                {% if post.soldrac > post.goal %}
+     					            <p class="footerpage ms-5">finita: obiettivo raggiunto</p>  
+                        		    {% else %}
+                        		    <p class="footerpage ms-5">finita: obiettivo non raggiunto</p>  
+                                    {% endif %}
+				                </div>
+                                <div class="col-3"><p class="footerpage budgetpage ms-2">{{ post.soldrac }} €</p></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>                    
+                <div class="col-4 imagecontainer">
+                    <a href="{{ url_for('single_post', id=post.raccid ) }}" class="linkpost imagepart" >
+                        {% if post.image %}
+                            <img class="w-100 h-100 p-2 imagepost" src="{{ url_for('static', filename=post.image) }}" alt="Questa è l'immagine del post">
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+    <!-- {% endif %}-->
+    {% endfor %}
+</main>
+{%endblock%}

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{%block title%}Aggiorna petizione{%endblock%}
+
+{%block content%}
+<a href="/profile">Torna indietro</a>
+<div class="col-4 offset-md-4 bg-light p-4 border rounded">
+    <form action="#" method="POST" enctype="multipart/form-data">
+        <!-- titolo -->
+        <div class="mb-3">
+            <label for="titolo" class="form-label fw-semibold">Titolo della petizione</label>
+            <input type="text" class="form-control" name="titolo" id="titoloInput" required minlength="1" value="{{post.titolo}}">
+        </div>  
+
+        <!-- descrizione -->    
+        <div class="mb-3">
+            <label for="descrizione" class="form-label fw-semibold">Descrizione della tua petizione</label>
+            <textarea class="form-control" id="descrizione" name="descrizione" rows="3" required minlength="8">{{ post.descrizione }}</textarea>
+        </div>
+        
+        <!-- Immagine -->
+        <div>
+            <label for="immagineFile" class="form-label fw-semibold">Immagine</label>
+            <input type="file" class="form-control" name="immagine_post" id="immagineFile" value="{{post.image}}">
+            <small class="d-block">* non obbligatoria</small>
+            <small class="d-block">** inserire una nuova immagine per cambiarla</small>
+        </div>
+
+        <!-- checkbox per eliminare l'immagine  -->
+        <div class="mb-3 form-check col-md-10"> 
+            <input class="form-check-input" name="cancim" type="checkbox" value="" id="flexCheckDefault">
+            <label for="cancim" name="cancim" class="form-check-label" for="flexCheckDefault">Se vuoi eliminare l'immagine</label>
+        </div>
+
+        <!-- obiettivo della raccolta -->
+        <div class="mb-3">
+            <label for="goalInput" class="form-label fw-semibold">Goal</label>
+            <div class="input-group">
+                <span class="input-group-text">€</span>
+                <input type="text" name="goal" class="form-control" id="goalInput" aria-label="Amount (to the nearest dollar)" value="{{post.goal}}" required>
+                <span class="input-group-text">.00</span>
+            </div>
+        </div>
+
+        <!-- minima e massima donazione che un utente può fare -->
+        <div class="mb-3">
+            <label for="goalInput" class="form-label fw-semibold">Donazioni</label>
+            <div class="row">
+                <div class="col">
+                    <div class="input-group">
+                        <span class="input-group-text">€</span>
+                        <input type="text" name="minen" class="form-control" id="minen" aria-label="Amount (to the nearest dollar)" value="{{post.minen}}" required>
+                        <span class="input-group-text">.00</span>
+                    </div>
+                    <small>minima</small>
+                </div>
+                <div class="col">
+                    <div class="input-group">
+                        <span class="input-group-text">€</span>
+                        <input type="text" name="maxen" class="form-control" id="maxen" aria-label="Amount (to the nearest dollar)" value="{{post.maxen}}" required>
+                        <span class="input-group-text">.00</span>
+                    </div>
+                    <small>massima</small>
+                </div>
+            </div>
+        </div>
+        
+        <!-- tipo di raccolta (lampo o normale) -->
+        <div class="mb-3">
+            <label for="goalInput" class="form-label fw-semibold">Tipo di raccolta:</label>
+            <div class="input-group">
+                {% if post.tiporac == "lampo" %}
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tiporac" id="lampo" value="lampo" checked>
+                    <label class="form-check-label" for="lampo">lampo (entro 5 minuti)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tiporac" id="normale" value="normale">
+                    <label class="form-check-label" for="normale">normale (entro 14 giorni)</label>
+                </div>
+                {% else %}
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tipo_raccolta" id="lampo" value="lampo">
+                    <label class="form-check-label" for="lampo">lampo (entro 5 minuti)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tipo_raccolta" id="normale" value="normale" checked>
+                    <label class="form-check-label" for="normale">normale (entro 14 giorni)</label>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- data e ora -->
+        <div class="mb-3">
+            <label for="datafineInput" class="form-label fw-semibold">Data e ora:</label>
+            <input class="form-control" type="datetime-local" name="datafine" id="datafineInput" value="{{post.datafine}}">
+            <small class="d-block mt-1">** hai creato la raccolta il {{ post.datacrz.split(" ")[0] }}</small>
+            <small class="d-block">* mettendo un'ora precedente all'attuale la raccolta verrà chiusa</small>
+        </div>
+        
+        <!-- bottone di invio  -->
+        <button type="submit" class="btn btn-primary">Aggiorna</button>
+    </form>
+</div>
+{%endblock%}

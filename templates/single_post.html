@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{%block title%}{{post.title}}{%endblock%}
+
+{% block content %}
+
+<!-- visualizzazione del post e form donazione -->
+<div class="container mt-3">
+    <!-- titolo -->
+    <p class="text-center justify-content-center title">{{ post.titolo }}</p>
+
+    <!-- caratteristiche della raccolta -->
+    <div id="post" class="row mx-auto text-center mb-3">
+        {% set anno, mese, giorno =  post.datacrz.split(" ")[0].split("-")%}
+        <div class="col">
+            {% if post.image %}
+                <img class="p-2 imagepost"
+                    src="{{ url_for('static', filename=post.image) }}" alt="Questa è l'immagine del post">
+            {% endif %}
+            <small class="mt-0 mb-3 d-block">Lanciata il {{giorno}}/{{mese}}/{{anno}}</small>
+            <p class="spdescr">Descrizione</p>
+            <p  class="me-0 d-inline">: {{post.descrizione}}</p>
+        </div>
+        <div class="col">
+            {% set progress_percentage = (post.soldrac / post.goal) * 100 %}
+            <div class="progress-container">
+                <span class="progress-label barcolor1">{{post.soldrac}}€</span>
+                <span class="progress-label2 barcolor1">raccolti</span>
+                <progress id="progress_bar" value="{{ progress_percentage }}" min="0" max="100" style="width: 80%;"></progress>
+                <span class="progress-label barcolor2">{{post.goal}}€</span>
+                <span class="progress-label2 barcolor2">obiettivo</span>
+            </div>
+            
+            <!-- form per donare nel caso in cui la raccolta non sia finita -->
+            {% if post.timer != '0' %}
+            <div class="mt-5 pt-2">
+                <h4>Firma questa petizione</h4>
+                <div class="mb-3 row justify-content-center"> 
+                    <div class="col"></div>
+                    <div class="col-11">
+                        <form action="{{ url_for('donazione', id=post.raccid ) }}" method="POST" enctype="multipart/form-data">
+                            <div class="mb-2 mt-2 row">
+                                <div class="col-md-6">
+                                    {% if current_user.is_authenticated %}
+                                    <input type="text" value="{{ current_user.nome }}" class="form-control" name="nome" id="nomeInput">
+                                    {% else %}
+                                    <input type="text" placeholder="nome" class="form-control" name="nome" id="nomeInput">
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6">
+                                    {% if current_user.is_authenticated %}
+                                    <input type="text" value="{{ current_user.cognome }}" class="form-control" name="cognome" id="cognomeInput">
+                                    {% else %}
+                                    <input type="text" placeholder="cognome" class="form-control" name="cognome" id="cognomeInput">
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3 form-check col-md-10"> 
+                                <input class="form-check-input" name="anonimo" type="checkbox" value="" id="flexCheckDefault">
+                                <label for="anonimo" name="anonimo" class="form-check-label" for="flexCheckDefault">Se vuoi rimanere anonimo</label>
+                            </div>
+                            <div class="mb-2 col-md-10">
+                                <input type="text" class="form-control" name="indirizzo" placeholder="indirizzo" id="indirizzoInput" required>
+                            </div>
+                            <div class="mb-3 col-md-10">
+                                <label for="soldiInput" class="form-label fw-semibold"><small class="font-weight-bold">Donazione</small></label>
+                                <div class="input-group">
+                                    <span class="input-group-text">€</span>
+                                    <input type="text" name="soldi" class="form-control" min="{{post.minen}}" max="{{post.maxen}}" id="soldiInput" aria-label="Amount (to the nearest dollar)" required>
+                                    <span class="input-group-text">.00</span>
+                                </div>
+                                <small>min: {{post.minen}}, max: {{post.maxen}}</small>
+                            </div>
+                            <div class="mb-2 mt-2 row">
+                                <div class="col-md-8">
+                                    <input type="text" placeholder="numero carta" class="form-control" name="numcarta" id="numcartaInput" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" name="cvv" placeholder="cvv" id="cvvInput" required>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <button type="submit" class="btn btn-primary">Effettua</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="mt-5 pt-2">
+                {% if post.soldrac > post.goal %}
+                <p class="obragg">finita: obiettivo raggiunto</p>  
+                {% else %}
+                <p class="obragg">finita: obiettivo non raggiunto</p> 
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>     
+    </div> 
+</div>
+
+<!-- donazioni effettuate -->
+<div class="container mt-3">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-9">
+            <hr>
+            <p class="titledon">Donazioni fatte</p>
+            <div class="mt-1 text-center">
+                {% for don in dons %}
+                <div class="row mt-1">
+                    <div class="col"></div>
+                    <div class="col-10">
+                        <div class="row text-center">
+                            <div class="col"><p class="d-inline">Nome: {{ don.nome }}</p></div>
+                            <div class="col-5"><p class="d-inline">Cognome: {{ don.cognome }}</p></div>
+                            <div class="col"><p class="d-inline">Donazione: {{ don.donazione }}€</p></div>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
