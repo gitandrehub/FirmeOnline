@@ -1,19 +1,22 @@
 # FirmeOnline
+
 ### Info Base
 Il progetto è stato svolto per il corso 'Introduzzione alle applicazioni Web'.
-L’indirizzo a cui l’applicazione web è visibile e usabile è [https://andrea01.pythonanywhere.com]
+L’indirizzo a cui l’applicazione web è visibile e usabile è [andrea01.pythonanywhere.com](https://andrea01.pythonanywhere.com).\
 Gli utenti registrati sono i seguenti:
 
-'mail utente            | password\n
--------------------------------------\n
-marco.b@example.com    | MarcoB123\n
-chiararossi@yahoo.com  | Chiara123\n
-matteo.russo@gmail.com | pass89'
+```
+mail utente            | password
+-------------------------------------
+marco.b@example.com    | MarcoB123
+chiararossi@yahoo.com  | Chiara123
+matteo.russo@gmail.com | pass89
+```
 
 Per maggiori informazioni leggere i file 'info.txt' (su come funziona l'applicazione) e 'requirements.txt' (librerie che ho usato).
 
 ### Descrizione dell'applicazione web
-Si vuole creare un'applicazione web per raccolte fondi tra privati. L’applicazione web deve supportare due tipi di utenti: quelli registrati e i visitatori del sito. 
+Si vuole creare un'applicazione web per raccolte fondi tra privati. L’applicazione web deve supportare due tipi di utenti: quelli registrati e i visitatori del sito. \
 Gli utenti registrati, previa registrazione e login sul sito, possono gestire delle raccolte fondi. Il form di login/registrazione richiede un campo il cui valore univoco verrà utilizzato per riconoscere l’utente nel sito (per esempio, la mail). Gli utenti possono, in particolare, creare, modificare e cancellare le proprie raccolte fondi. Alla creazione, una raccolta fondi sarà rappresentata dalle seguenti informazioni:
 - Titolo della raccolta fondi
 - Breve descrizione
@@ -34,9 +37,9 @@ Quando una raccolta fondi è chiusa (cioè se non si possono più ricevere donaz
 - La raccolta non ha raggiunto l’obiettivo monetario. In questo caso, la pagina della raccolta fondi mostrerà la scritta 
   “Obiettivo non raggiunto!”.
 
-I visitatori non hanno bisogno di registrarsi né fare il login sul sito e potranno navigare liberamente nell’applicazione web e fare donazioni. 
-Nella home page, i visitatori troveranno la lista delle raccolte aperte, ordinate per data/ora di chiusura (a partire da quelle che chiuderanno prima). Deve essere chiaro al visitatore quali siano le raccolte lampo e quali quelle normali, con l’indicazione di quanto manca alla loro chiusura per entrambe. 
-Le raccolte chiuse, invece, dovranno essere elencate in una pagina dedicata che mostrerà per prima le raccolte che hanno raggiunto l’obiettivo monetario.
-Quando un visitatore vorrà fare una donazione, dovrà farlo dalla pagina della singola raccolta fondi, scegliendo la cifra da donare, indicando il proprio nome, cognome, indirizzo, le informazioni sulla carta di credito e se si vuole che la sua donazione sia pubblica o che rimanga anonima. Si supponga che i pagamenti siano istantanei e sempre possibili. 
-Dopo una donazione, i dettagli del donatore (cioè, nome del donatore e l’ammontare donato) devono essere visibili in un’apposita sezione della pagina della singola raccolta fondi; se il donatore ha scelto di rimanere anonimo, comparirà “Anonimo” invece del nome del donatore. I fondi donati andranno ad aumentare il totale raccolto per la raccolta fondi in questione. E’ possibile donare fondi finché la raccolta è aperta.
+I visitatori non hanno bisogno di registrarsi né fare il login sul sito e potranno navigare liberamente nell’applicazione web e fare donazioni.\
+Nella home page, i visitatori troveranno la lista delle raccolte aperte, ordinate per data/ora di chiusura (a partire da quelle che chiuderanno prima). Deve essere chiaro al visitatore quali siano le raccolte lampo e quali quelle normali, con l’indicazione di quanto manca alla loro chiusura per entrambe.\
+Le raccolte chiuse, invece, dovranno essere elencate in una pagina dedicata che mostrerà per prima le raccolte che hanno raggiunto l’obiettivo monetario.\
+Quando un visitatore vorrà fare una donazione, dovrà farlo dalla pagina della singola raccolta fondi, scegliendo la cifra da donare, indicando il proprio nome, cognome, indirizzo, le informazioni sulla carta di credito e se si vuole che la sua donazione sia pubblica o che rimanga anonima. Si supponga che i pagamenti siano istantanei e sempre possibili. \
+Dopo una donazione, i dettagli del donatore (cioè, nome del donatore e l’ammontare donato) devono essere visibili in un’apposita sezione della pagina della singola raccolta fondi; se il donatore ha scelto di rimanere anonimo, comparirà “Anonimo” invece del nome del donatore. I fondi donati andranno ad aumentare il totale raccolto per la raccolta fondi in questione. E’ possibile donare fondi finché la raccolta è aperta.\
 Un utente registrato può fare qualunque cosa faccia un visitatore, incluso donare alla propria raccolta fondi.
